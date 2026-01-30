@@ -292,6 +292,43 @@ def main():
     dashboard_stats["class_names"] = class_names
     dashboard_stats["matrix"] = trans_cm.tolist()
 
+    # --- Sustainability & Decision Support Analytics ---
+    f15_stats = dashboard_stats["years"]["2015"]
+    f24_stats = dashboard_stats["years"]["2024"]
+    
+    def get_change_stats(name):
+        v1 = f15_stats.get(name, {}).get("area_km2", 0)
+        v2 = f24_stats.get(name, {}).get("area_km2", 0)
+        net = v2 - v1
+        rate = (net / v1 * 100) if v1 > 0 else 0
+        return {"net_km2": round(net, 2), "growth_rate": round(rate, 2)}
+
+    dashboard_stats["decision_support"] = {
+        "environmental_impact": {
+            "forest_loss": get_change_stats("Forest"),
+            "water_stability": get_change_stats("Water Bodies"),
+            "agri_transformation": get_change_stats("Agriculture")
+        },
+        "urban_dynamics": {
+            "sprawl": get_change_stats("Built-up"),
+            "major_drivers": []
+        }
+    }
+
+    # Identify top 3 non-static transition drivers
+    drivers = []
+    for i in range(len(class_names)):
+        for j in range(len(class_names)):
+            if i != j:
+                area = trans_cm[i, j] * pixel_area_km2
+                if area > 1.0: # Only significant drivers > 1km2
+                    drivers.append({
+                        "source": class_names[i],
+                        "target": class_names[j],
+                        "area_km2": round(float(area), 2)
+                    })
+    dashboard_stats["decision_support"]["urban_dynamics"]["major_drivers"] = sorted(drivers, key=lambda x: x["area_km2"], reverse=True)[:3]
+
     # Geo Bounds
     from rasterio.warp import transform_bounds
     b = transform_bounds(meta15['crs'], 'EPSG:4326', *bounds15)

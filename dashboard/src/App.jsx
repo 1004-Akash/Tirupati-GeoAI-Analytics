@@ -80,7 +80,8 @@ const Dashboard = () => {
           {[
             { id: 'overview', label: 'Dashboard', icon: Layout },
             { id: 'explorer', label: 'Spatial Explorer', icon: MapIcon },
-            { id: 'governance', label: 'Governance Panel', icon: Activity }
+            { id: 'governance', label: 'Governance Panel', icon: Activity },
+            { id: 'report', label: 'Sustainability Report', icon: ShieldCheck }
           ].map(tab => (
             <button
               key={tab.id}
@@ -311,6 +312,90 @@ const Dashboard = () => {
               >
                 DOWNLOAD GOVERNANCE DATA (.CSV)
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'report' && (
+        <div className="space-y-8 animate-in fade-in duration-700">
+          <div className="glass-card p-10 bg-nature-500/5 border-nature-500/10">
+            <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
+              <ShieldCheck className="text-nature-500 w-10 h-10" />
+              Sustainability & Environmental Audit
+            </h2>
+            <p className="text-gray-400 max-w-3xl leading-relaxed">
+              This report summarizes the pixel-level transformations across Tirupati District (2015-2024), providing evidence-based insights for environmental governance and sustainable urban development.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="glass-card p-8">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+                <MapIcon className="text-nature-500" /> Environmental Impact Metrics
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  { label: "Forest Cover", key: "forest_loss" },
+                  { label: "Water Stability", key: "water_stability" },
+                  { label: "Agri Resilience", key: "agri_transformation" }
+                ].map(item => {
+                  const data = analyticsData.decision_support.environmental_impact[item.key];
+                  return (
+                    <div key={item.key} className="space-y-2">
+                      <p className="text-xs text-gray-500 uppercase font-bold">{item.label}</p>
+                      <p className={`text-2xl font-bold ${data.growth_rate < 0 ? 'text-red-500' : 'text-nature-500'}`}>
+                        {data.net_km2 > 0 ? '+' : ''}{data.net_km2} km²
+                      </p>
+                      <p className="text-[10px] text-gray-400">{data.growth_rate}% Relative Change</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="glass-card p-8">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+                <TrendingUp className="text-blue-500" /> Key Transition Drivers
+              </h3>
+              <div className="space-y-4">
+                {analyticsData.decision_support.urban_dynamics.major_drivers.map((driver, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+                    <div className="flex items-center gap-4">
+                      <span className="text-gray-500 text-xs font-mono">0{i + 1}</span>
+                      <div className="flex items-center gap-2 text-sm font-medium">
+                        {driver.source} <span className="text-gray-600">→</span> {driver.target}
+                      </div>
+                    </div>
+                    <div className="text-nature-500 font-bold font-mono text-sm">{driver.area_km2} km²</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="glass-card p-8 bg-blue-500/5 border-blue-500/10">
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+              <ShieldCheck className="text-blue-500" /> Decision Support Summary
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="space-y-4">
+                <h4 className="font-bold text-sm text-gray-300">Sustainable Planning Guidance</h4>
+                <ul className="space-y-3 list-disc list-inside text-xs text-gray-400 leading-relaxed">
+                  <li>Detected <strong>{analyticsData.decision_support.urban_dynamics.sprawl.net_km2} km²</strong> of net urban expansion.</li>
+                  <li>Prioritize high-confidence ({analyticsData.governance.avg_confidence * 100}%) classification zones for baseline zoning.</li>
+                  <li>Mitigation strategies required for major drivers exceeding 1 km².</li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h4 className="font-bold text-sm text-gray-300">Metadata Verification</h4>
+                <div className="p-4 bg-black/40 rounded-lg space-y-2 font-mono text-[10px]">
+                  <div className="flex justify-between"><span>Study Area:</span> <span>Tirupati District</span></div>
+                  <div className="flex justify-between"><span>Analysis Unit:</span> <span>30m Pixel (Landsat)</span></div>
+                  <div className="flex justify-between"><span>Temporal Gap:</span> <span>9 Years</span></div>
+                  <div className="flex justify-between text-blue-400"><span>AI Model Confidence:</span> <span>High</span></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

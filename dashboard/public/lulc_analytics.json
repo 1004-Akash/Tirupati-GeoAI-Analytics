@@ -2,46 +2,46 @@
     "years": {
         "2015": {
             "Forest": {
-                "area_km2": 3841.76,
-                "percentage": 24.73
+                "area_km2": 3846.85,
+                "percentage": 24.77
             },
             "Water Bodies": {
-                "area_km2": 1176.86,
-                "percentage": 7.58
+                "area_km2": 1178.14,
+                "percentage": 7.59
             },
             "Agriculture": {
-                "area_km2": 4735.99,
-                "percentage": 30.49
+                "area_km2": 4731.36,
+                "percentage": 30.46
             },
             "Barren Land": {
-                "area_km2": 4114.18,
-                "percentage": 26.49
+                "area_km2": 4110.86,
+                "percentage": 26.47
             },
             "Built-up": {
-                "area_km2": 1662.94,
-                "percentage": 10.71
+                "area_km2": 1664.52,
+                "percentage": 10.72
             }
         },
         "2024": {
             "Forest": {
-                "area_km2": 3987.18,
-                "percentage": 25.67
+                "area_km2": 3988.12,
+                "percentage": 25.68
             },
             "Water Bodies": {
-                "area_km2": 1303.04,
-                "percentage": 8.39
+                "area_km2": 1301.5,
+                "percentage": 8.38
             },
             "Agriculture": {
-                "area_km2": 4488.03,
-                "percentage": 28.9
+                "area_km2": 4486.55,
+                "percentage": 28.89
             },
             "Barren Land": {
-                "area_km2": 3934.04,
-                "percentage": 25.33
+                "area_km2": 3933.24,
+                "percentage": 25.32
             },
             "Built-up": {
-                "area_km2": 1819.43,
-                "percentage": 11.71
+                "area_km2": 1822.32,
+                "percentage": 11.73
             }
         }
     },
@@ -53,47 +53,86 @@
         "Built-up"
     ],
     "governance": {
-        "urban_sprawl_km2": 77.83,
+        "urban_sprawl_km2": 78.2,
         "avg_confidence": 0.97,
-        "high_likelihood_changes": 15136628
+        "high_likelihood_changes": 15136081
     },
     "matrix": [
         [
-            3059994,
-            70330,
-            838693,
-            213131,
-            86479
+            3061894,
+            69248,
+            842157,
+            214096,
+            86888
         ],
         [
-            34602,
-            1216603,
-            18964,
-            21687,
-            15765
+            34960,
+            1216943,
+            19127,
+            21883,
+            16129
         ],
         [
-            1043402,
-            58240,
-            2693894,
-            1202417,
-            264258
+            1042420,
+            57508,
+            2689729,
+            1203508,
+            263901
         ],
         [
-            238033,
-            75033,
-            1254562,
-            2320470,
-            683211
+            237753,
+            74796,
+            1253258,
+            2319040,
+            682775
         ],
         [
-            54170,
-            27618,
-            180592,
-            613456,
-            971871
+            54214,
+            27616,
+            180785,
+            611743,
+            975104
         ]
     ],
+    "decision_support": {
+        "environmental_impact": {
+            "forest_loss": {
+                "net_km2": 141.27,
+                "growth_rate": 3.67
+            },
+            "water_stability": {
+                "net_km2": 123.36,
+                "growth_rate": 10.47
+            },
+            "agri_transformation": {
+                "net_km2": -244.81,
+                "growth_rate": -5.17
+            }
+        },
+        "urban_dynamics": {
+            "sprawl": {
+                "net_km2": 157.8,
+                "growth_rate": 9.48
+            },
+            "major_drivers": [
+                {
+                    "source": "Barren Land",
+                    "target": "Agriculture",
+                    "area_km2": 1127.93
+                },
+                {
+                    "source": "Agriculture",
+                    "target": "Barren Land",
+                    "area_km2": 1083.16
+                },
+                {
+                    "source": "Agriculture",
+                    "target": "Forest",
+                    "area_km2": 938.18
+                }
+            ]
+        }
+    },
     "bounds": [
         [
             13.293359405929092,
