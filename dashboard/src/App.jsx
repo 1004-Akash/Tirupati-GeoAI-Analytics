@@ -46,6 +46,18 @@ const Dashboard = () => {
     }))
   ).filter(d => d.from !== d.to && d.value > 100);
 
+  const exportCSV = () => {
+    const headers = ["Source Class (2015)", "Target Class (2024)", "Magnitude (Pixels)"];
+    const rows = transitionData.sort((a, b) => b.value - a.value).map(d => [d.from, d.to, d.value]);
+    let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "tirupati_lulc_transitions.csv");
+    document.body.appendChild(link);
+    link.click();
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white p-6 lg:p-10">
       <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
@@ -293,8 +305,11 @@ const Dashboard = () => {
               </div>
               <h4 className="text-sm font-bold text-gray-300 uppercase tracking-widest mb-4">Export Decision-Ready Report</h4>
               <p className="text-xs text-gray-500 mb-6 leading-relaxed">Ready for one-click export to PDF/GeoJSON for state-level sustainability reporting and smart city committee evaluation.</p>
-              <button className="w-full py-4 bg-nature-500 hover:bg-nature-600 active:scale-[0.98] transition-all rounded-lg font-bold text-sm tracking-widest shadow-lg shadow-nature-500/20">
-                DOWNLOAD GOVERNANCE REPORT (.PDF)
+              <button
+                onClick={exportCSV}
+                className="w-full py-4 bg-nature-500 hover:bg-nature-600 active:scale-[0.98] transition-all rounded-lg font-bold text-sm tracking-widest shadow-lg shadow-nature-500/20"
+              >
+                DOWNLOAD GOVERNANCE DATA (.CSV)
               </button>
             </div>
           </div>
