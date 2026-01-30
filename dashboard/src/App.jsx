@@ -247,7 +247,38 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div className="glass-card p-8">
             <h3 className="text-xl font-bold mb-8 flex items-center gap-3">
-              <BarChart3 className="text-nature-500 w-6 h-6" /> Class-to-Class Transition Matrix
+              <BarChart3 className="text-nature-500 w-6 h-6" /> Full Transition Matrix (Pixels)
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="text-[10px] uppercase font-bold text-gray-500 tracking-widest">
+                    <th className="p-2 border border-white/10 bg-white/5">2015 \ 2024</th>
+                    {analyticsData.class_names.map(name => (
+                      <th key={name} className="p-2 border border-white/10 bg-white/5">{name}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="text-xs font-mono">
+                  {analyticsData.matrix.map((row, i) => (
+                    <tr key={i} className="hover:bg-white/5 transition-colors">
+                      <td className="p-2 border border-white/10 bg-white/5 font-bold text-gray-300">{analyticsData.class_names[i]}</td>
+                      {row.map((val, j) => (
+                        <td key={j} className={`p-2 border border-white/10 ${i === j ? 'text-gray-500 opacity-50' : 'text-nature-500 font-bold'}`}>
+                          {val.toLocaleString()}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-[10px] text-gray-500 italic">Rows: 2015 state | Columns: 2024 state. Diagonal entries indicate stability.</p>
+          </div>
+
+          <div className="glass-card p-8">
+            <h3 className="text-xl font-bold mb-8 flex items-center gap-3">
+              <TrendingUp className="text-nature-500 w-6 h-6" /> Top Significant Transitions
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-separate border-spacing-y-2">
@@ -260,7 +291,7 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="text-sm">
-                  {transitionData.sort((a, b) => b.value - a.value).slice(0, 12).map((d, i) => (
+                  {transitionData.sort((a, b) => b.value - a.value).slice(0, 10).map((d, i) => (
                     <tr key={i} className="glass-card group hover:bg-white/5 transition-all">
                       <td className="p-4 rounded-l-lg font-medium text-gray-300">{d.from}</td>
                       <td className="p-4 font-medium text-gray-300">{d.to}</td>
