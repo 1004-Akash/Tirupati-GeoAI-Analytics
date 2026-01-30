@@ -1,0 +1,30 @@
+# Datasets (Large files)
+*.tif
+*.tiff
+Tirupati_Period1_2015_LANDSAT8.tif
+Tirupati_Period2_2024_LANDSAT8.tif
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Dashboard / Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vscode/
+
+# Logs
+pip-log.txt
+pip-delete-this-directory.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db

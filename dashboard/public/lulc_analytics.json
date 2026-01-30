@@ -1,0 +1,107 @@
+{
+    "years": {
+        "2015": {
+            "Forest": {
+                "area_km2": 3841.76,
+                "percentage": 24.73
+            },
+            "Water Bodies": {
+                "area_km2": 1176.86,
+                "percentage": 7.58
+            },
+            "Agriculture": {
+                "area_km2": 4735.99,
+                "percentage": 30.49
+            },
+            "Barren Land": {
+                "area_km2": 4114.18,
+                "percentage": 26.49
+            },
+            "Built-up": {
+                "area_km2": 1662.94,
+                "percentage": 10.71
+            }
+        },
+        "2024": {
+            "Forest": {
+                "area_km2": 3987.18,
+                "percentage": 25.67
+            },
+            "Water Bodies": {
+                "area_km2": 1303.04,
+                "percentage": 8.39
+            },
+            "Agriculture": {
+                "area_km2": 4488.03,
+                "percentage": 28.9
+            },
+            "Barren Land": {
+                "area_km2": 3934.04,
+                "percentage": 25.33
+            },
+            "Built-up": {
+                "area_km2": 1819.43,
+                "percentage": 11.71
+            }
+        }
+    },
+    "class_names": [
+        "Forest",
+        "Water Bodies",
+        "Agriculture",
+        "Barren Land",
+        "Built-up"
+    ],
+    "governance": {
+        "urban_sprawl_km2": 77.83,
+        "avg_confidence": 0.97,
+        "high_likelihood_changes": 15136628
+    },
+    "matrix": [
+        [
+            3059994,
+            70330,
+            838693,
+            213131,
+            86479
+        ],
+        [
+            34602,
+            1216603,
+            18964,
+            21687,
+            15765
+        ],
+        [
+            1043402,
+            58240,
+            2693894,
+            1202417,
+            264258
+        ],
+        [
+            238033,
+            75033,
+            1254562,
+            2320470,
+            683211
+        ],
+        [
+            54170,
+            27618,
+            180592,
+            613456,
+            971871
+        ]
+    ],
+    "bounds": [
+        [
+            13.293359405929092,
+            78.98050860048723
+        ],
+        [
+            14.267312836971477,
+            80.26869271791462
+        ]
+    ]
+}
